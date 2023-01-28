@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from pyresparser import ResumeParser
 import os
 
-UPLOAD_FOLDER = './server/temp'
+UPLOAD_FOLDER = './server'
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -12,7 +12,8 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def upload():
     file = request.files.get("file")
 
-    temp_file_path = os.path.join(app.config['UPLOAD_FOLDER'], "Resume.pdf")
+    temp_file_path = os.path.join(
+        app.config['UPLOAD_FOLDER'], "TEMP_RESUME.pdf")
     if file:
         file.save(temp_file_path)
     else:
